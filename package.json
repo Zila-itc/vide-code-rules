@@ -1,0 +1,159 @@
+{
+  "name": "ai-config-switcher",
+  "displayName": "AI Config Switcher",
+  "description": "Smart configuration manager for AI coding agents (Cursor, Windsurf, Kilo Code, etc.)",
+  "version": "1.0.0",
+  "publisher": "Sila",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zila-itc/vide-code-rules"
+  },
+  "categories": [
+    "Other",
+    "Extension Packs"
+  ],
+  "keywords": [
+    "ai",
+    "cursor",
+    "windsurf",
+    "kilo",
+    "config",
+    "switcher"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:aiConfigSwitcher.switchProfile",
+    "onCommand:aiConfigSwitcher.createProfile",
+    "onCommand:aiConfigSwitcher.editProfile",
+    "onCommand:aiConfigSwitcher.syncFromCurrent",
+    "onCommand:aiConfigSwitcher.manageProfiles"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiConfigSwitcher.switchProfile",
+        "title": "Switch AI Profile",
+        "category": "AI Config"
+      },
+      {
+        "command": "aiConfigSwitcher.createProfile",
+        "title": "Create New AI Profile",
+        "category": "AI Config"
+      },
+      {
+        "command": "aiConfigSwitcher.editProfile",
+        "title": "Edit AI Profile",
+        "category": "AI Config"
+      },
+      {
+        "command": "aiConfigSwitcher.syncFromCurrent",
+        "title": "Sync Config from Current Setup",
+        "category": "AI Config"
+      },
+      {
+        "command": "aiConfigSwitcher.manageProfiles",
+        "title": "Manage AI Profiles",
+        "category": "AI Config"
+      }
+    ],
+    "configuration": {
+      "title": "AI Config Switcher",
+      "properties": {
+        "aiConfigSwitcher.autoDetect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically detect AI tools and suggest profile switches"
+        },
+        "aiConfigSwitcher.backupBeforeSwitch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create backup before switching profiles"
+        },
+        "aiConfigSwitcher.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications when switching profiles"
+        },
+        "aiConfigSwitcher.defaultProfile": {
+          "type": "string",
+          "default": "",
+          "description": "Default AI profile to use"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "aiConfigSwitcher.switchProfile"
+        },
+        {
+          "command": "aiConfigSwitcher.createProfile"
+        },
+        {
+          "command": "aiConfigSwitcher.editProfile"
+        },
+        {
+          "command": "aiConfigSwitcher.syncFromCurrent"
+        },
+        {
+          "command": "aiConfigSwitcher.manageProfiles"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "aiConfigSwitcher.switchProfile",
+          "group": "aiconfig@1"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "aiConfigSwitcher",
+          "title": "AI Config Switcher",
+          "icon": "$(gear)"
+        }
+      ]
+    },
+    "views": {
+      "aiConfigSwitcher": [
+        {
+          "id": "aiConfigProfiles",
+          "name": "AI Profiles",
+          "when": "true"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^5.0.0",
+    "vite": "^6.3.5",
+    "vite-plugin-node": "^5.0.1",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.0",
+    "glob": "^8.1.0"
+  }
+}

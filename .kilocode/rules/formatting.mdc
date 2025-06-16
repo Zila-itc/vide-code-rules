@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: The Application is about dating system like Tinder.
+globs: src/**/*.ts
+alwaysApply: true
+---
+
+
+# Code Style
+
+- Type import must be with ``import { type Typename } from './module';``.
+- Maintain the same functionality but with less code duplication
+- Keep all modules skinny
+- Type Safety with typescript
+- Follow module-based approach (no classes)
+- Proper null handling
+- Always follow linting from ``.eslintrc.js`` configuration
+- Uses promise/then instead of async/await
+- Documen all function with JTDocs with example
+- TypeScript Type: Use type definitions instead of interfaces
+- Case: Use pascalCase always
+- Use descriptive variable names (eg. isLoading, hasPermission)
+- Avoid using ``any`` type.
+- Use complete word instead of abbreviation and correct spelling.
+- Never user ``for`` loop, user recursive in stead.
