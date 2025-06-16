@@ -35,96 +35,50 @@
   "contributes": {
     "commands": [
       {
-        "command": "aiConfigSwitcher.switchProfile",
-        "title": "Switch AI Profile",
-        "category": "AI Config"
+        "command": "agentConfigs.create",
+        "title": "Create Agent Config"
       },
       {
-        "command": "aiConfigSwitcher.createProfile",
-        "title": "Create New AI Profile",
-        "category": "AI Config"
-      },
-      {
-        "command": "aiConfigSwitcher.editProfile",
-        "title": "Edit AI Profile",
-        "category": "AI Config"
-      },
-      {
-        "command": "aiConfigSwitcher.syncFromCurrent",
-        "title": "Sync Config from Current Setup",
-        "category": "AI Config"
-      },
-      {
-        "command": "aiConfigSwitcher.manageProfiles",
-        "title": "Manage AI Profiles",
-        "category": "AI Config"
+        "command": "agentConfigs.refresh",
+        "title": "Refresh Agent Configs"
       }
     ],
-    "configuration": {
-      "title": "AI Config Switcher",
-      "properties": {
-        "aiConfigSwitcher.autoDetect": {
-          "type": "boolean",
-          "default": true,
-          "description": "Automatically detect AI tools and suggest profile switches"
-        },
-        "aiConfigSwitcher.backupBeforeSwitch": {
-          "type": "boolean",
-          "default": true,
-          "description": "Create backup before switching profiles"
-        },
-        "aiConfigSwitcher.showNotifications": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show notifications when switching profiles"
-        },
-        "aiConfigSwitcher.defaultProfile": {
-          "type": "string",
-          "default": "",
-          "description": "Default AI profile to use"
+    "views": {
+      "explorer": [
+        {
+          "id": "agentConfigs",
+          "name": "Agent Configs"
         }
-      }
+      ]
     },
     "menus": {
-      "commandPalette": [
+      "view/title": [
         {
-          "command": "aiConfigSwitcher.switchProfile"
+          "command": "agentConfigs.refresh",
+          "group": "navigation",
+          "when": "view == agentConfigs"
         },
         {
-          "command": "aiConfigSwitcher.createProfile"
-        },
-        {
-          "command": "aiConfigSwitcher.editProfile"
-        },
-        {
-          "command": "aiConfigSwitcher.syncFromCurrent"
-        },
-        {
-          "command": "aiConfigSwitcher.manageProfiles"
+          "command": "agentConfigs.create",
+          "group": "navigation",
+          "when": "view == agentConfigs"
         }
       ],
-      "explorer/context": [
+      "view/item/context": [
         {
-          "command": "aiConfigSwitcher.switchProfile",
-          "group": "aiconfig@1"
-        }
-      ]
-    },
-    "viewsContainers": {
-      "activitybar": [
+          "command": "agentConfigs.activate",
+          "when": "view == agentConfigs && viewItem == config",
+          "group": "inline"
+        },
         {
-          "id": "aiConfigSwitcher",
-          "title": "AI Config Switcher",
-          "icon": "$(gear)"
-        }
-      ]
-    },
-    "views": {
-      "aiConfigSwitcher": [
+          "command": "agentConfigs.edit",
+          "when": "view == agentConfigs",
+          "group": "inline"
+        },
         {
-          "id": "aiConfigProfiles",
-          "name": "AI Profiles",
-          "when": "true"
+          "command": "agentConfigs.delete",
+          "when": "view == agentConfigs",
+          "group": "inline"
         }
       ]
     }
